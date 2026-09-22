@@ -34,6 +34,22 @@ app.get ("/db-test", async(req, res) => {
     }
 });
 
+// Get all savings goals
+app.get ("/goals", async(req,res) =>{
+    try {
+        const [goals] = await db.query(
+            "SELECT * FROM savings_goals"
+        );
+        res.status(200).json(goals);
+    } catch (error) {
+        console.error("Error fetching goals:", error);
+
+        res.status(500).json({
+            message: "Unable to fetch savings goals"
+        });
+    }
+});
+
 //Start the server
 app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
