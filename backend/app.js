@@ -79,6 +79,40 @@ app.post("/users", async(req,res) => {
     }
 });
 
+//Create a saving goal
+app.post("/goals", async(req,res) => {
+    const { user_id, goal_name, target_amount, deadline } = req.body;
+    if (!user_id || !goal_name || !target_amount) {
+        return res.status(400).json({
+            message: "User ID, goal name and target amount are required"
+        });
+    }
+    try {
+        const [result] = await db.query(
+            `INSERT INTO savings_goals
+            (user_id, goal_name, target_amount, deadline)
+            VALUES (?, ?, ?, ?)`,
+            [user_id, goal_name, target_amount, deadline]
+        );
+        res.status(201).json({
+            message: "Savings goal created successfully",
+            goal: {
+                goal_id: result.insertId,
+                user_id,
+                goal_name,
+                target_amount,
+                deadline,
+                status: "In Progress"
+            }
+        });
+    } catch(error) {
+        console.error("Error creating savings goal:", error);
+        res.status(500).json({
+            message: "Unable to create savings goal"
+        });
+    }
+});
+
 //Start the server
 app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
