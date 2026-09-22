@@ -50,6 +50,35 @@ app.get ("/goals", async(req,res) =>{
     }
 });
 
+// Create a new user
+app.post("/users", async(req,res) => {
+    const { name, email } = req.body;
+    if (!name || !email) {
+        return res.status(400).json({
+            message: "Name and email are required"
+        });
+    }
+    try {
+        const [result] = await db.query(
+            "INSERT INTO users (name, email) VALUES (?, ?)",
+            [name,email]
+        );
+        res.status(201).json({
+            message: "User created successfully",
+            user: {
+                user_id: result.insertId,
+                name: name,
+                email: email
+            }
+        });
+    } catch (error) {
+        console.error("Error creating user:", error)
+        res.status(500).json({
+            message: "Unable to create user"
+        });
+    }
+});
+
 //Start the server
 app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
