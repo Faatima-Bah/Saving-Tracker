@@ -113,6 +113,51 @@ app.post("/goals", async(req,res) => {
     }
 });
 
+//Add contribution to savings goals
+app.post("/contributions", async(req, res) => {
+    const { goal_id, amount, note } = req.body;
+
+    if (!goal_id || amount === undefined) {
+        return res.status(400).json({
+            message: "Goal ID and amount are required"
+        });
+    }
+    if (Number(amount) <= 0) {
+        return res.status(400).json({
+            message: "Amount must be greater than Zero"
+        });
+    }
+    try {
+        const [result] = await db.query(
+            `INSERT INTO contributions (goal_id, amount, note)
+            VALUES (?, ?, ?)`,
+            [goal_id, amount, note]
+        );
+
+        res.status(201).json ({
+            message: "Contribution added successfully",
+            contribution: {
+                contribution_id: result.insertId,
+                goal_id,
+                amount,
+                note
+            }
+        });
+    } catch (error) {
+        console.error("Error adding contribution:", error);
+
+        if (error.code === "ER_NO_REFERENCED_ROW_2") {
+            return res.status(404).json({
+                message: "Savings goal not found"
+            });
+        }
+        res.status(500).json({
+            message: "Unable to add contribution"
+        });
+    }
+});
+
+
 //Start the server
 app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
