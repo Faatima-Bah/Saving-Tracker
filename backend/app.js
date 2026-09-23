@@ -38,7 +38,14 @@ app.get ("/db-test", async(req, res) => {
 app.get ("/goals", async(req,res) =>{
     try {
         const [goals] = await db.query(
-            "SELECT * FROM savings_goals"
+            `SELECT
+                sg.*,
+                COALESCE(SUM(c.amount) , 0) AS saved_amount
+            FROM savings_goals sg
+            LEFT JOIN contributions c
+                ON sg.goal_id = c.goal_id
+            GROUP BY sg.goal_id
+            `
         );
         res.status(200).json(goals);
     } catch (error) {
