@@ -57,6 +57,40 @@ app.get ("/goals", async(req,res) =>{
     }
 });
 
+//Get one saving goal by id
+app.get("/goals/:id", async(req,res) => {
+    const {id} = req.params;
+
+    try{
+        const [goals] = await db.query (
+            `SELECT
+                sg.*,
+                COALESCE(SUM(c.amount), 0) AS saved_amount
+            FROM savings_goals sg
+            LEFT JOIN contributions c
+                ON sg.goal_id = c.goal_id
+            WHERE sg.goal_id = ?
+            GROUP BY sg.goal_id`,
+            [id]
+        );
+
+        if (goals.length === 0) {
+            return res.status(404).json({
+                message: "Saving goal not found"
+            });
+        }
+
+        res.status(200).json(goals[0]);
+    } catch (error) {
+        console.error("Error fetching savings goal:", error);
+
+        res.status (500).json ({
+            message: "Unable to fetch savings goal"
+        });
+    }
+
+});
+
 // Create a new user
 app.post("/users", async(req,res) => {
     const { name, email } = req.body;
