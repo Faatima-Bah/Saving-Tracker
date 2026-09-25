@@ -198,6 +198,66 @@ app.post("/contributions", async(req, res) => {
     }
 });
 
+//Update a savings goal
+app.patch("/goals/:id", async (req, res) => {
+    const { id } = req.params;
+    const { goal_name, target_amount, deadline, status } = req.body;
+
+    //Check that the user provided something to update
+    if (
+        goal_name === undefined &&
+        target_amount === undefined &&
+        deadline === undefined &&
+        status === undefined
+    )
+    {
+        return res.status(400).json({
+            message: "Please provide at least one field to update"
+        });
+    }
+
+    //Target amount must be greater than zero
+    if (target_amount !== undefined && Number(target_amount) <= 0) {
+        return res.status(400).json({
+            message: "Target amount must be greater than zero"
+        });
+    }
+
+    try {
+        const [result] = await db.query (
+            `UPDATE savings_goals
+            SET
+                goal_name = COALESCE (?, goal_name),
+                target_amount = COALESCE (?, target_amount),
+                deadline = COALESCE(?, deadline),
+                status = COALESCE(?, status)
+            WHERE goal_id = ?`,
+            [
+                goal_name ?? null,
+                target_amount ?? null,
+                deadline ?? null,
+                status ?? null,
+                id
+            ]
+        );
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({
+                message: "Savings goal not found"
+            });
+        }
+
+        res.status(200).json({
+            message: "Savings goal updated successfully"
+        });
+    } catch (error) {
+        console.error("Error updating savings goal", error);
+
+        res.status(500).json({
+            message: "Unable to update savings goal"
+        });
+    }
+});
 
 //Start the server
 app.listen(PORT, () => {
