@@ -287,6 +287,45 @@ app.delete("/goals/:id", async (req, res) => {
     }
 });
 
+//Get all contributions for one savings goal
+app.get("/goals/:id/contributions", async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        //check whether the savings goal exists
+        const [goals] = await db.query(
+            "SELECT goal_id FROM savings_goals WHERE goal_id = ?",
+            [id]
+        );
+
+        if (goals.length === 0) {
+            return res.status(404).json({
+                message: "Saving goal not found"
+            });
+        }
+        //Get the contributions belonging to the goal
+        const [contributions] = await db.query(
+            `SELECT contribution_id,
+                goal_id,
+                amount,
+                note,
+                contributed_at
+            FROM contributions 
+            WHERE goal_id = ? 
+            ORDER BY contributed_at DESC`,
+            [id]
+        );
+
+        res.status(200).json(contributions);
+    } catch (error) {
+        console.error("Error fetching contributions:", error);
+
+        res.status(500).json({
+            message: "Unable to fetch contributions"
+        });
+    }
+});
+
 //Start the server
 app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
