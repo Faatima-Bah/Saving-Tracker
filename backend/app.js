@@ -114,6 +114,14 @@ app.post("/users", async(req,res) => {
         });
     } catch (error) {
         console.error("Error creating user:", error)
+
+        //MySQL returns ER_DUP_ENTRY when the email already exists
+        if (error.code === "ER_DUP_ENTRY") {
+            return res.status(409).json({
+                message: "A user with this email already exists"
+            });
+        }
+
         res.status(500).json({
             message: "Unable to create user"
         });
@@ -148,6 +156,14 @@ app.post("/goals", async(req,res) => {
         });
     } catch(error) {
         console.error("Error creating savings goal:", error);
+
+        //The supplied user_id does not exist
+        if (error.code === "ER_NO_REFERENCED_ROW_2") {
+            return res.status(404).json({
+                message: "User not found"
+            });
+        }
+
         res.status(500).json({
             message: "Unable to create savings goal"
         });
@@ -223,6 +239,15 @@ app.patch("/goals/:id", async (req, res) => {
         });
     }
 
+    //Check that the status is valid
+    const allowedStatuses = ["Completed", "Paused", "In Progess"];
+
+    if (status !== undefined && !allowedStatuses.includes(status)) {
+        return res.status(400).json({
+            message: "Status must be Completed, Paused, or In Progress"
+        });
+    }
+    
     try {
         const [result] = await db.query (
             `UPDATE savings_goals
