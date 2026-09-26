@@ -259,6 +259,34 @@ app.patch("/goals/:id", async (req, res) => {
     }
 });
 
+// Delete a saving goal
+app.delete("/goals/:id", async (req, res) => {
+    const { id } = req.params; // get the id from the url
+
+    try {
+        const [result] = await db.query(
+            "DELETE FROM savings_goals WHERE goal_id = ?",
+            [id]
+        );
+        //check whether anything was deleted
+        if (result.affectedRows === 1) {
+            return res.status(200).json({
+                message: "Savings goal deleted successfully"
+            });
+        } else {
+            return res.status(404).json({
+                message: "Savings goal not found"
+        });
+        }
+    } catch (error) {
+        console.error("Error deleting savings goal:", error);
+
+        res.status(500).json({
+            message: "Unable to delete savings goal"
+        });
+    }
+});
+
 //Start the server
 app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
