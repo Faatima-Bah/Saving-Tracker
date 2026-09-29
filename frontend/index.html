@@ -7,7 +7,70 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Saving Tracker</h1>
+    
+    <div class="app-layout">
+
+        <aside class="sidebar">
+            <h1>Saving Tracker</h1>
+
+            <nav>
+                <a href="#" class="nav-link active">Dashboard</a>
+                <a href="#" class="nav-link">Goals</a>
+            </nav>
+        </aside>
+
+        <main class="dasboard">
+            <header class="dashboard-header">
+
+                <div>
+                    <h2>Dashboard</h2>
+                    <p>A quick view of your savings progress</p>
+                </div>
+
+                <button id="create-goal-button">+ Create Goal</button>
+            </header>
+
+            <section class="summary-cards">
+
+                <article class="summary-card">
+                    <p>Total Saved</p>
+                    <h3 id="total-saved">£0.00</h3>
+                </article>
+
+                <article class="summary-card">
+                    <p>Total Target</p>
+                    <h3 id="total-target">£0.00</h3>
+                </article>
+
+                <article class="summary-card">
+                    <p>Overall Progress</p>
+
+                    <div class="progress-information">
+                        <span id="progress-amount">£0.00 of £0.00</span>
+                        <strong id="progress-percentage">0%</strong>
+                    </div>
+
+                    <div class="progress-bar">
+                        <div id="overall-progress-bar" class="progress-fill"></div>
+                    </div>
+
+                </article>
+
+            </section>
+
+            <section class="goals-section">
+                <div class="section-header">
+                    <h2>Savings Goals</h2>
+                    <span id="goal-count">0 Goals</span>
+                </div>
+
+                <div id="goals-list" class="goals-list">
+                    <p class="empty-message">No savings goals yet.</p>
+                </div>
+            </section>
+        </main>
+
+    </div>
 
     <script src="script.js"></script>
 </body>
