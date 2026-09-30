@@ -1,0 +1,21 @@
+/* Make element sizes easier to control and remove default spacing */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Set the default appearance for the entire page */
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: #242824;
+    background-color: #f6f7f5;
+}
+
+/* Place the sidebar and dashboard beside each other */
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
