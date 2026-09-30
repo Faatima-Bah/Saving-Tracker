@@ -21,62 +21,65 @@
         </aside>
 
         <!-- Main dashboard content: title and Create Goal button -->
-        <main class="dashboard">
-            <header class="dashboard-header">
+        <div class="content-area">
+            <main class="dashboard">
+                <header class="dashboard-header">
 
-                <div>
-                    <h2>Dashboard</h2>
-                    <p>A quick view of your savings progress</p>
-                </div>
-
-                <button id="create-goal-button">+ Create Goal</button>
-            </header>
-
-            <!-- Combined target amount for all goals -->
-            <section class="summary-cards">
-
-                <article class="summary-card">
-                    <p>Total Saved</p>
-                    <h3 id="total-saved">£0.00</h3>
-                </article>
-
-                <article class="summary-card">
-                    <p>Total Target</p>
-                    <h3 id="total-target">£0.00</h3>
-                </article>
-
-                <article class="summary-card">
-                    <p>Overall Progress</p>
-
-                    <div class="progress-information">
-                        <span id="progress-amount">£0.00 of £0.00</span>
-                        <strong id="progress-percentage">0%</strong>
+                    <div>
+                        <h2>Dashboard</h2>
+                        <p>A quick view of your savings progress</p>
                     </div>
 
-                    <div class="progress-bar">
-                        <div id="overall-progress-bar" class="progress-fill"></div>
+                    <button id="create-goal-button">+ Create Goal</button>
+                </header>
+
+                <!-- Combined target amount for all goals -->
+                <section class="summary-cards">
+
+                    <article class="summary-card">
+                        <p>Total Saved</p>
+                        <h3 id="total-saved">£0.00</h3>
+                    </article>
+
+                    <article class="summary-card">
+                        <p>Total Target</p>
+                        <h3 id="total-target">£0.00</h3>
+                    </article>
+
+                    <article class="summary-card">
+                        <p>Overall Progress</p>
+
+                        <div class="progress-information">
+                            <span id="progress-amount">£0.00 of £0.00</span>
+                            <strong id="progress-percentage">0%</strong>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div id="overall-progress-bar" class="progress-fill"></div>
+                        </div>
+
+                    </article>
+
+                </section>
+
+                <!-- Savings goals area: Goals heading and number of goals -->
+                <section class="goals-section">
+                    <div class="section-header">
+                        <h2>Savings Goals</h2>
+                        <span id="goal-count">0 Goals</span>
                     </div>
 
-                </article>
+                    <div id="goals-list" class="goals-list">
+                        <p class="empty-message">No savings goals yet.</p>
+                    </div>
+                </section>
 
-            </section>
+            </main>
 
-            <!-- Savings goals area: Goals heading and number of goals -->
-            <section class="goals-section">
-                <div class="section-header">
-                    <h2>Savings Goals</h2>
-                    <span id="goal-count">0 Goals</span>
-                </div>
-
-                <div id="goals-list" class="goals-list">
-                    <p class="empty-message">No savings goals yet.</p>
-                </div>
-            </section>
-
-        </main>
-        <footer>
-            <p>2026 Fatimatou Bah. All rights reserved.</p>
-        </footer>
+            <footer class="page-footer">
+                <p>&copy; Made in 2026 by Fatimatou Bah. All rights reserved.</p>
+            </footer>
+        </div>
 
     </div>
 
