@@ -19,3 +19,25 @@ body {
     min-height: 100vh;
 }
 
+/* Style the left sidebar */
+.sidebar {
+    width: 240px;
+    min-height: 100vh;
+    padding: 30px 22px;
+    background-color: #ffffff;
+    border-right: 1px solid #d9ddd8;
+}
+
+/* Style the Saving Tracker heading */
+.sidebar h1 {
+    margin-bottom: 36px;
+    font-size: 22px;
+}
+
+/* Arrange the navigation links vertically */
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
