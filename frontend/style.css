@@ -78,3 +78,25 @@ body {
     font-size: 30px;
 }
 
+/* Style the description underneath the heading */
+.dashboard-header p {
+    color: #6b806b;
+}
+
+/* Style the Create Goal button */
+#create-goal-button {
+    padding: 14px 20px;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    background-color: #6f8f72;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Change the button colour when the mouse is over it */
+#create-goal-button:hover {
+    background-color: #58745b;
+}
+
