@@ -100,3 +100,30 @@ body {
     background-color: #58745b;
 }
 
+/* Arrange the summary cards in three equal columns */
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 36px;
+}
+
+/* Style each summary card */
+.summary-card {
+    padding: 24px;
+    background-color: #ffffff;
+    border: 1px solid #d6e2d4;
+    border-radius: 10px;
+}
+
+/* Style the card labels */
+.summary-card p {
+    margin-bottom: 16px;
+    color: #6b706b;
+}
+
+/* Style the total amounts */
+.summary-card h3 {
+    font-size: 30px;
+}
+
