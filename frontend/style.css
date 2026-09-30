@@ -127,3 +127,28 @@ body {
     font-size: 30px;
 }
 
+/* Place the progress amount and percentage on one row */
+.progress-information {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    font-size: 14px;
+}
+
+/* Create the light-grey progress bar background */
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    overflow: hidden;
+    background-color: #dfe2dd;
+    border-radius: 10px;
+}
+
+/* Create the dark filled section of the progress bar */
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background-color: #6f8f72;
+    border-radius: 10px;
+}
+
