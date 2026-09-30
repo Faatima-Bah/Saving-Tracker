@@ -41,3 +41,20 @@ body {
     gap: 10px;
 }
 
+/* Style every navigation link */
+.nav-link {
+    display: block;
+    padding: 12px 14px;
+    color: #656a65;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+/* Highlight the active navigation link */
+.nav-link.active,
+.nav-link:hover {
+    color: #36523a;
+    font-weight: 600;
+    background-color: #e7f0e5;
+}
+
