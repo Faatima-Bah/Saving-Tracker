@@ -160,6 +160,28 @@ body {
     border-radius: 10px;
 }
 
+/* Savings goals heading */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+#goal-count {
+    color: #58745b;
+    font-size: 14px;
+}
+
+.empty-message {
+    padding: 30px;
+    color: #6b706b;
+    text-align: center;
+    background-color: #ffffff;
+    border: 1px solid #d6e2d4;
+    border-radius: 10px;
+}
+
 /* Footer */
 .page-footer {
     margin-top: auto;
