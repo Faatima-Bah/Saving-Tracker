@@ -61,11 +61,18 @@ function displayGoals(goals) {
         const goalStatus = document.createElement("p");
         goalStatus.textContent = "Status: " + goal.status;
 
+        // Create the deadline
+        const deadline = document.createElement("p");
+        const deadlineDate = goal.deadline.split("T")[0];
+
+        deadline.textContent = "Deadline: " + deadlineDate;
+
         // Add the information to the card
         goalCard.appendChild(goalName);
         goalCard.appendChild(targetAmount);
         goalCard.appendChild(savedAmount);
         goalCard.appendChild(goalStatus);
+        goalCard.appendChild(deadline);
 
         // Add the card to the page
         goalsList.appendChild(goalCard);
