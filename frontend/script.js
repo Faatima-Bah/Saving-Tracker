@@ -53,9 +53,19 @@ function displayGoals(goals) {
         const targetAmount = document.createElement("p");
         targetAmount.textContent = "Target: £" + goal.target_amount;
 
+        // Create the saved amount
+        const savedAmount = document.createElement("p");
+        savedAmount.textContent = "Saved: £" + goal.saved_amount;
+
+        // Create the goal status
+        const goalStatus = document.createElement("p");
+        goalStatus.textContent = "Status: " + goal.status;
+
         // Add the information to the card
         goalCard.appendChild(goalName);
         goalCard.appendChild(targetAmount);
+        goalCard.appendChild(savedAmount);
+        goalCard.appendChild(goalStatus);
 
         // Add the card to the page
         goalsList.appendChild(goalCard);
