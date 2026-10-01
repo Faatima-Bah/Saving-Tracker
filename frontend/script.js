@@ -1,6 +1,7 @@
-const API_URL = "http:///localhost:3000";
+const API_URL = "http://localhost:3000";
 // Get the goal count element from the HTML
-const goalCount = document.getElementById("goal-count")
+const goalCount = document.getElementById("goal-count");
+const goalsList = document.getElementById("goals-list");
 
 //Get all savings goals
 async function loadGoals() {
@@ -14,8 +15,9 @@ async function loadGoals() {
         const goals = await response.json();
         goalCount.textContent = `${goals.length} Goals`;
 
-
+        displayGoals(goals);
         console.log(goals);
+
     } catch (error) {
         console.error("Error loading goals:", error);
     }
@@ -24,3 +26,38 @@ async function loadGoals() {
 
 //Run the function when the page loads
 loadGoals();
+
+// Display the savings goals
+function displayGoals(goals) {
+    goalsList.innerHTML = "";
+
+    // Show a message when there are no goals
+    if (goals.length === 0) {
+        goalsList.innerHTML =
+            '<p class="empty-message">No savings goals yet.</p>';
+
+        return;
+    }
+
+    // Go through the goals one at a time
+    for (const goal of goals) {
+        // Create the goal card
+        const goalCard = document.createElement("article");
+        goalCard.classList.add("goal-card");
+
+        // Create the goal name
+        const goalName = document.createElement("h3");
+        goalName.textContent = goal.goal_name;
+
+        // Create the target amount
+        const targetAmount = document.createElement("p");
+        targetAmount.textContent = "Target: £" + goal.target_amount;
+
+        // Add the information to the card
+        goalCard.appendChild(goalName);
+        goalCard.appendChild(targetAmount);
+
+        // Add the card to the page
+        goalsList.appendChild(goalCard);
+    }
+}
