@@ -4,6 +4,9 @@ const goalCount = document.getElementById("goal-count");
 const goalsList = document.getElementById("goals-list");
 const totalSavedElement = document.getElementById("total-saved");
 const totalTargetElement = document.getElementById("total-target");
+const progressAmountElement = document.getElementById("progress-amount");
+const progressPercentageElement = document.getElementById("progress-percentage");
+const overallProgressBar = document.getElementById("overall-progress-bar");
 
 
 //Get all savings goals
@@ -20,7 +23,7 @@ async function loadGoals() {
 
         displayGoals(goals);
         updateTotals(goals);
-        
+
         console.log(goals);
 
     } catch (error) {
@@ -95,7 +98,7 @@ function displayGoals(goals) {
         goalCard.appendChild(goalStatus);
         goalCard.appendChild(deadline);
         goalCard.appendChild(progressText);
-        goalCard.appendChild(deadline);
+        
         // Add the card to the page
         goalsList.appendChild(goalCard);
     }
@@ -115,4 +118,24 @@ function updateTotals(goals) {
     // Display the totals on the page
     totalSavedElement.textContent = "£" + totalSaved.toFixed(2);
     totalTargetElement.textContent = "£" + totalTarget.toFixed(2);
+
+    // Start the overall progress at zero
+    let overallProgress = 0;
+
+    // Calculate the progress when the total target is above zero
+    if (totalTarget > 0) {
+        overallProgress = (totalSaved / totalTarget) * 100;
+    }
+
+    // Display the saved and target amounts
+    progressAmountElement.textContent =
+        "£" + totalSaved.toFixed(2) +
+        " of £" + totalTarget.toFixed(2);
+
+    // Display the percentage
+    progressPercentageElement.textContent =
+        overallProgress.toFixed(0) + "%";
+
+    // Change the width of the progress bar
+    overallProgressBar.style.width = overallProgress + "%";
 }
