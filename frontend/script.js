@@ -2,6 +2,9 @@ const API_URL = "http://localhost:3000";
 // Get the goal count element from the HTML
 const goalCount = document.getElementById("goal-count");
 const goalsList = document.getElementById("goals-list");
+const totalSavedElement = document.getElementById("total-saved");
+const totalTargetElement = document.getElementById("total-target");
+
 
 //Get all savings goals
 async function loadGoals() {
@@ -16,6 +19,8 @@ async function loadGoals() {
         goalCount.textContent = `${goals.length} Goals`;
 
         displayGoals(goals);
+        updateTotals(goals);
+        
         console.log(goals);
 
     } catch (error) {
@@ -94,4 +99,20 @@ function displayGoals(goals) {
         // Add the card to the page
         goalsList.appendChild(goalCard);
     }
+}
+
+// Update the dashboard totals
+function updateTotals(goals) {
+    let totalSaved = 0;
+    let totalTarget = 0;
+
+    // Add the amounts from every goal
+    for (const goal of goals) {
+        totalSaved = totalSaved + Number(goal.saved_amount);
+        totalTarget = totalTarget + Number(goal.target_amount);
+    }
+
+    // Display the totals on the page
+    totalSavedElement.textContent = "£" + totalSaved.toFixed(2);
+    totalTargetElement.textContent = "£" + totalTarget.toFixed(2);
 }
