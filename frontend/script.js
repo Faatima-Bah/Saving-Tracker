@@ -67,13 +67,30 @@ function displayGoals(goals) {
 
         deadline.textContent = "Deadline: " + deadlineDate;
 
+        // Change the amounts into numbers
+        const savedNumber = Number(goal.saved_amount);
+        const targetNumber = Number(goal.target_amount);
+
+        // Start the progress at zero
+        let progress = 0;
+
+        // Calculate the progress when the target is greater than zero
+        if (targetNumber > 0) {
+            progress = (savedNumber / targetNumber) * 100;
+        }
+
+        // Create the progress text
+        const progressText = document.createElement("p");
+        progressText.textContent = "Progress: " + progress.toFixed(0) + "%";
+
         // Add the information to the card
         goalCard.appendChild(goalName);
         goalCard.appendChild(targetAmount);
         goalCard.appendChild(savedAmount);
         goalCard.appendChild(goalStatus);
         goalCard.appendChild(deadline);
-
+        goalCard.appendChild(progressText);
+        goalCard.appendChild(deadline);
         // Add the card to the page
         goalsList.appendChild(goalCard);
     }
