@@ -91,6 +91,13 @@ function displayGoals(goals) {
         const progressText = document.createElement("p");
         progressText.textContent = "Progress: " + progress.toFixed(0) + "%";
 
+        // Create a link to view this goal
+        const viewGoalLink = document.createElement("a");
+
+        viewGoalLink.textContent = "View Goal";
+
+        viewGoalLink.href = "goal-details.html?id=" + goal.goal_id;
+
         // Add the information to the card
         goalCard.appendChild(goalName);
         goalCard.appendChild(targetAmount);
@@ -98,6 +105,7 @@ function displayGoals(goals) {
         goalCard.appendChild(goalStatus);
         goalCard.appendChild(deadline);
         goalCard.appendChild(progressText);
+        goalCard.appendChild(viewGoalLink);
         
         // Add the card to the page
         goalsList.appendChild(goalCard);
