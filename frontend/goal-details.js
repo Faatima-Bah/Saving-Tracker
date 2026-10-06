@@ -227,6 +227,49 @@ editGoalForm.addEventListener(
     }
 );
 
+// Find the Delete Goal button
+const deleteGoalButton =
+    document.getElementById("delete-goal-button");
+
+// Delete the selected goal
+deleteGoalButton.addEventListener(
+    "click",
+    async function () {
+        const confirmed = window.confirm(
+            "Are you sure you want to delete this goal?"
+        );
+
+        // Stop if the user selects Cancel
+        if (!confirmed) {
+            return;
+        }
+
+        try {
+            const response = await fetch(
+                `${API_URL}/goals/${goalId}`,
+                {
+                    method: "DELETE"
+                }
+            );
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.message);
+            }
+
+            alert(result.message);
+
+            // Return to the dashboard
+            window.location.href = "index.html";
+
+        } catch (error) {
+            document.getElementById("delete-message").textContent =
+                error.message;
+        }
+    }
+);
+
 // Only load the goal when an ID is available
 if (goalId) {
     loadGoal();
