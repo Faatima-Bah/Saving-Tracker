@@ -240,7 +240,7 @@ app.patch("/goals/:id", async (req, res) => {
     }
 
     //Check that the status is valid
-    const allowedStatuses = ["Completed", "Paused", "In Progess"];
+    const allowedStatuses = ["Completed", "Paused", "In Progress"];
 
     if (status !== undefined && !allowedStatuses.includes(status)) {
         return res.status(400).json({
