@@ -94,6 +94,68 @@ async function loadContributions() {
     }
 }
 
+// Find the contribution form
+const contributionForm =
+    document.getElementById("contribution-form");
+
+// Run when the form is submitted
+contributionForm.addEventListener(
+    "submit",
+    async function (event) {
+        event.preventDefault();
+
+        // Get the information from the form
+        const amount =
+            document.getElementById("contribution-amount").value;
+
+        const note =
+            document.getElementById("contribution-note").value;
+
+        // Prepare the information for the backend
+        const newContribution = {
+            goal_id: goalId,
+            amount: amount,
+            note: note
+        };
+
+        try {
+            const response = await fetch(
+                `${API_URL}/contributions`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(newContribution)
+                }
+            );
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.message);
+            }
+
+            // Show the success message
+            document.getElementById(
+                "contribution-message"
+            ).textContent = result.message;
+
+            // Empty the form
+            contributionForm.reset();
+
+            // Refresh the goal information and contributions
+            loadGoal();
+            loadContributions();
+
+        } catch (error) {
+            document.getElementById(
+                "contribution-message"
+            ).textContent = error.message;
+        }
+    }
+);
+
 // Only load the goal when an ID is available
 if (goalId) {
     loadGoal();
