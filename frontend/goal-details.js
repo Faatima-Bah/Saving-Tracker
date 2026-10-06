@@ -38,6 +38,19 @@ async function loadGoal() {
 
         document.getElementById("goal-deadline").textContent =
             "Deadline: " + deadline;
+        
+        // Fill the edit form with the current goal information
+        document.getElementById("edit-goal-name").value =
+            goal.goal_name;
+
+        document.getElementById("edit-target-amount").value =
+            goal.target_amount;
+
+        document.getElementById("edit-deadline").value =
+            deadline;
+
+        document.getElementById("edit-status").value =
+            goal.status;
 
     } catch (error) {
         document.getElementById("error-message").textContent =
@@ -152,6 +165,64 @@ contributionForm.addEventListener(
             document.getElementById(
                 "contribution-message"
             ).textContent = error.message;
+        }
+    }
+);
+
+// Find the edit goal form
+const editGoalForm = document.getElementById("edit-goal-form");
+
+// Run when the edit form is submitted
+editGoalForm.addEventListener(
+    "submit",
+    async function (event) {
+        event.preventDefault();
+
+        // Get the updated information
+        const goalName = document.getElementById("edit-goal-name").value;
+
+        const targetAmount = document.getElementById("edit-target-amount").value;
+
+        const deadline = document.getElementById("edit-deadline").value;
+
+        const status = document.getElementById("edit-status").value;
+
+        // Prepare the updated goal
+        const updatedGoal = {
+            goal_name: goalName,
+            target_amount: targetAmount,
+            deadline: deadline,
+            status: status
+        };
+
+        try {
+            const response = await fetch(
+                `${API_URL}/goals/${goalId}`,
+                {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(updatedGoal)
+                }
+            );
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.message);
+            }
+
+            // Show the success message
+            document.getElementById("edit-message").textContent =
+                result.message;
+
+            // Display the updated information
+            loadGoal();
+
+        } catch (error) {
+            document.getElementById("edit-message").textContent =
+                error.message;
         }
     }
 );
