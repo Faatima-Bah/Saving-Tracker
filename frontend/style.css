@@ -101,6 +101,8 @@ body {
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
 }
 
 /* Change the button colour when the mouse is over it */
@@ -235,5 +237,167 @@ body {
 @media (max-width: 768px) {
     .summary-cards {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Arrange the savings goal cards */
+.goals-list {
+    display: grid;
+    gap: 16px;
+}
+
+/* Style each savings goal card */
+.goal-card {
+    padding: 22px;
+    background-color: #ffffff;
+    border: 1px solid #d6e2d4;
+    border-radius: 10px;
+}
+
+.goal-card h3 {
+    margin-bottom: 12px;
+    color: #36523a;
+}
+
+.goal-card p {
+    margin-bottom: 8px;
+    color: #5f675f;
+}
+
+/* Style the View Goal link */
+.goal-card a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #58745b;
+    font-weight: 600;
+}
+
+/* Create Goal and Goal Details pages */
+.form-page {
+    width: min(700px, calc(100% - 32px));
+    margin: 40px auto;
+    padding: 32px;
+    background-color: #ffffff;
+    border: 1px solid #d6e2d4;
+    border-radius: 12px;
+}
+
+/* Back to dashboard link */
+.form-page > a {
+    display: inline-block;
+    margin-bottom: 24px;
+    color: #58745b;
+    font-weight: 600;
+}
+
+/* Page heading */
+.form-page h1 {
+    margin-bottom: 24px;
+    color: #36523a;
+}
+
+/* Separate the sections */
+.form-page section {
+    margin-bottom: 26px;
+    padding-bottom: 26px;
+    border-bottom: 1px solid #d6e2d4;
+}
+
+.form-page h2 {
+    margin-bottom: 16px;
+    font-size: 20px;
+    color: #36523a;
+}
+
+/* Goal information box */
+.goal-details {
+    padding: 20px;
+    background-color: #e7f0e5;
+    border-radius: 8px;
+}
+
+.goal-details p {
+    margin-bottom: 8px;
+}
+
+/* Arrange form elements vertically */
+.form-page form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-page label {
+    margin-top: 8px;
+    font-weight: 600;
+}
+
+/* Style inputs and dropdowns */
+.form-page input,
+.form-page select {
+    width: 100%;
+    padding: 12px;
+    font: inherit;
+    border: 1px solid #bfcbbd;
+    border-radius: 7px;
+}
+
+/* Highlight the selected field */
+.form-page input:focus,
+.form-page select:focus {
+    outline: 2px solid #a9bea7;
+    border-color: #6f8f72;
+}
+
+/* Style form buttons */
+.form-page button {
+    margin-top: 10px;
+    padding: 12px 18px;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    background-color: #6f8f72;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.form-page button:hover {
+    background-color: #58745b;
+}
+
+/* Style the Delete Goal button */
+#delete-goal-button {
+    background-color: #b84c4c;
+}
+
+#delete-goal-button:hover {
+    background-color: #963b3b;
+}
+
+/* Contribution records */
+#contributions-list p {
+    margin-bottom: 10px;
+    padding: 12px;
+    background-color: #f6f7f5;
+    border-radius: 7px;
+}
+
+/* Success and error messages */
+#form-message,
+#edit-message,
+#contribution-message,
+#delete-message,
+#error-message {
+    margin-top: 12px;
+    color: #58745b;
+    font-weight: 600;
+}
+
+/* Make form pages comfortable on small screens */
+@media (max-width: 768px) {
+    .form-page {
+        margin: 20px auto;
+        padding: 22px;
     }
 }
