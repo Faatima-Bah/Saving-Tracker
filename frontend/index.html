@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saving Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Holds the the Saving Tracker title and sidebar nav links-->
+    <div class="app-layout">
+
+        <aside class="sidebar">
+            <h1>Saving Tracker</h1>
+
+            <!-- Main navigation links -->
+            <nav>
+                <a href="index.html" class="nav-link active">Dashboard</a>
+                <a href="#goals-section" class="nav-link">Goals</a>
+            </nav>
+        </aside>
+
+        <!-- Main dashboard content: title and Create Goal button -->
+        <div class="content-area">
+            <main class="dashboard">
+                <header class="dashboard-header">
+
+                    <div>
+                        <h2>Dashboard</h2>
+                        <p>A quick view of your savings progress</p>
+                    </div>
+
+                    <a href="create-goal.html" id="create-goal-button">
+                        + Create Goal
+                    </a>
+                </header>
+
+                <!-- Combined target amount for all goals -->
+                <section class="summary-cards">
+
+                    <article class="summary-card">
+                        <p>Total Saved</p>
+                        <h3 id="total-saved">£0.00</h3>
+                    </article>
+
+                    <article class="summary-card">
+                        <p>Total Target</p>
+                        <h3 id="total-target">£0.00</h3>
+                    </article>
+
+                    <article class="summary-card">
+                        <p>Overall Progress</p>
+
+                        <div class="progress-information">
+                            <span id="progress-amount">£0.00 of £0.00</span>
+                            <strong id="progress-percentage">0%</strong>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div id="overall-progress-bar" class="progress-fill"></div>
+                        </div>
+
+                    </article>
+
+                </section>
+
+                <!-- Savings goals area: Goals heading and number of goals -->
+                <section id="goals-section" class="goals-section">
+                    <div class="section-header">
+                        <h2>Savings Goals</h2>
+                        <span id="goal-count">0 Goals</span>
+                    </div>
+
+                    <div id="goals-list" class="goals-list">
+                        <p class="empty-message">No savings goals yet.</p>
+                    </div>
+                </section>
+
+            </main>
+
+            <footer class="page-footer">
+                <p>&copy; Made in 2026 by Fatimatou Bah. All rights reserved.</p>
+            </footer>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

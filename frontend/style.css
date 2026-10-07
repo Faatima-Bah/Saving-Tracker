@@ -1,0 +1,403 @@
+/* Make element sizes easier to control and remove default spacing */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Set the default appearance for the entire page */
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: #242824;
+    background-color: #f6f7f5;
+}
+
+/* Place the sidebar and dashboard beside each other */
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Style the left sidebar */
+.sidebar {
+    width: 240px;
+    min-height: 100vh;
+    padding: 30px 22px;
+    background-color: #ffffff;
+    border-right: 1px solid #d9ddd8;
+}
+
+/* Style the Saving Tracker heading */
+.sidebar h1 {
+    margin-bottom: 36px;
+    font-size: 22px;
+}
+
+/* Arrange the navigation links vertically */
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Style every navigation link */
+.nav-link {
+    display: block;
+    padding: 12px 14px;
+    color: #656a65;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+/* Highlight the active navigation link */
+.nav-link.active,
+.nav-link:hover {
+    color: #36523a;
+    font-weight: 600;
+    background-color: #e7f0e5;
+}
+
+/* Dashboard and footer area */
+.content-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Give the dashboard the remaining available space */
+.dashboard {
+    flex: 1;
+    padding: 32px 40px;
+}
+
+/* Place the dashboard title and Create Goal button on one row */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+/* Style the Dashboard heading */
+.dashboard-header h2 {
+    margin-bottom: 6px;
+    font-size: 30px;
+}
+
+/* Style the description underneath the heading */
+.dashboard-header p {
+    color: #6b806b;
+}
+
+/* Style the Create Goal button */
+#create-goal-button {
+    padding: 14px 20px;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    background-color: #6f8f72;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+}
+
+/* Change the button colour when the mouse is over it */
+#create-goal-button:hover {
+    background-color: #58745b;
+}
+
+/* Arrange the summary cards in three equal columns */
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 36px;
+}
+
+/* Style each summary card */
+.summary-card {
+    padding: 24px;
+    background-color: #ffffff;
+    border: 1px solid #d6e2d4;
+    border-radius: 10px;
+}
+
+/* Style the card labels */
+.summary-card p {
+    margin-bottom: 16px;
+    color: #6b706b;
+}
+
+/* Style the total amounts */
+.summary-card h3 {
+    font-size: 30px;
+}
+
+/* Smaller screens */
+@media (max-width: 768px) {
+    .dashboard {
+        padding: 24px 20px;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    #create-goal-button {
+        width: 100%;
+    }
+
+    .summary-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .app-layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .sidebar h1 {
+        margin-bottom: 20px;
+    }
+
+    .sidebar nav {
+        flex-direction: row;
+    }
+}
+
+/* Place the progress amount and percentage on one row */
+.progress-information {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    font-size: 14px;
+}
+
+/* Create the light-grey progress bar background */
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    overflow: hidden;
+    background-color: #dfe2dd;
+    border-radius: 10px;
+}
+
+/* Create the dark filled section of the progress bar */
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background-color: #6f8f72;
+    border-radius: 10px;
+}
+
+/* Savings goals heading */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+#goal-count {
+    color: #58745b;
+    font-size: 14px;
+}
+
+.empty-message {
+    padding: 30px;
+    color: #6b706b;
+    text-align: center;
+    background-color: #ffffff;
+    border: 1px solid #d6e2d4;
+    border-radius: 10px;
+}
+
+/* Footer */
+.page-footer {
+    margin-top: auto;
+    padding: 18px;
+    color: #36523a;
+    font-size: 14px;
+    text-align: center;
+    background-color: #e7f0e5;
+    border-top: 1px solid #d6e2d4;
+}
+
+/* Smaller screens */
+@media (max-width: 768px) {
+    .summary-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Arrange the savings goal cards */
+.goals-list {
+    display: grid;
+    gap: 16px;
+}
+
+/* Style each savings goal card */
+.goal-card {
+    padding: 22px;
+    background-color: #ffffff;
+    border: 1px solid #d6e2d4;
+    border-radius: 10px;
+}
+
+.goal-card h3 {
+    margin-bottom: 12px;
+    color: #36523a;
+}
+
+.goal-card p {
+    margin-bottom: 8px;
+    color: #5f675f;
+}
+
+/* Style the View Goal link */
+.goal-card a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #58745b;
+    font-weight: 600;
+}
+
+/* Create Goal and Goal Details pages */
+.form-page {
+    width: min(700px, calc(100% - 32px));
+    margin: 40px auto;
+    padding: 32px;
+    background-color: #ffffff;
+    border: 1px solid #d6e2d4;
+    border-radius: 12px;
+}
+
+/* Back to dashboard link */
+.form-page > a {
+    display: inline-block;
+    margin-bottom: 24px;
+    color: #58745b;
+    font-weight: 600;
+}
+
+/* Page heading */
+.form-page h1 {
+    margin-bottom: 24px;
+    color: #36523a;
+}
+
+/* Separate the sections */
+.form-page section {
+    margin-bottom: 26px;
+    padding-bottom: 26px;
+    border-bottom: 1px solid #d6e2d4;
+}
+
+.form-page h2 {
+    margin-bottom: 16px;
+    font-size: 20px;
+    color: #36523a;
+}
+
+/* Goal information box */
+.goal-details {
+    padding: 20px;
+    background-color: #e7f0e5;
+    border-radius: 8px;
+}
+
+.goal-details p {
+    margin-bottom: 8px;
+}
+
+/* Arrange form elements vertically */
+.form-page form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-page label {
+    margin-top: 8px;
+    font-weight: 600;
+}
+
+/* Style inputs and dropdowns */
+.form-page input,
+.form-page select {
+    width: 100%;
+    padding: 12px;
+    font: inherit;
+    border: 1px solid #bfcbbd;
+    border-radius: 7px;
+}
+
+/* Highlight the selected field */
+.form-page input:focus,
+.form-page select:focus {
+    outline: 2px solid #a9bea7;
+    border-color: #6f8f72;
+}
+
+/* Style form buttons */
+.form-page button {
+    margin-top: 10px;
+    padding: 12px 18px;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    background-color: #6f8f72;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.form-page button:hover {
+    background-color: #58745b;
+}
+
+/* Style the Delete Goal button */
+#delete-goal-button {
+    background-color: #b84c4c;
+}
+
+#delete-goal-button:hover {
+    background-color: #963b3b;
+}
+
+/* Contribution records */
+#contributions-list p {
+    margin-bottom: 10px;
+    padding: 12px;
+    background-color: #f6f7f5;
+    border-radius: 7px;
+}
+
+/* Success and error messages */
+#form-message,
+#edit-message,
+#contribution-message,
+#delete-message,
+#error-message {
+    margin-top: 12px;
+    color: #58745b;
+    font-weight: 600;
+}
+
+/* Make form pages comfortable on small screens */
+@media (max-width: 768px) {
+    .form-page {
+        margin: 20px auto;
+        padding: 22px;
+    }
+}
