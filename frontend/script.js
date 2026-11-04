@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000";
+const API_URL = "https://saving-tracker-0zd7.onrender.com";
 // Get the goal count element from the HTML
 const goalCount = document.getElementById("goal-count");
 const goalsList = document.getElementById("goals-list");

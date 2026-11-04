@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000";
+const API_URL = "https://saving-tracker-0zd7.onrender.com";
 
 const createGoalForm =
     document.getElementById("create-goal-form");

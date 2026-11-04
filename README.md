@@ -150,7 +150,7 @@ npm run dev
 The API runs at:
 
 ```text
-http://localhost:3000
+https://saving-tracker-0zd7.onrender.com
 ```
 
 ### 7. Start the frontend
@@ -188,7 +188,7 @@ Keep both the backend server and Live Server running while using the application
 The frontend uses this API address:
 
 ```javascript
-const API_URL = "http://localhost:3000";
+const API_URL = "https://saving-tracker-0zd7.onrender.com";
 ```
 
 ## API Endpoints

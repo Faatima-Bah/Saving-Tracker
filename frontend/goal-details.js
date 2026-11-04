@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000";
+const API_URL = "https://saving-tracker-0zd7.onrender.com";
 
 // Get the goal ID from the page address
 const pageAddress = new URLSearchParams(window.location.search);
